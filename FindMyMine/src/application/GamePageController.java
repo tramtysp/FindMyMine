@@ -1,10 +1,8 @@
 package application;
 
-import java.awt.Toolkit;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,207 +12,208 @@ import javafx.scene.layout.Pane;
 
 public class GamePageController implements Initializable {
 	@FXML
-	Button b1;
+    private Button b1;
 
-	@FXML
-	Button b2;
+    @FXML
+    private Button b2;
 
-	@FXML
-	Button b3;
+    @FXML
+    private Button b3;
 
-	@FXML
-	Button b4;
+    @FXML
+    private Button b4;
 
-	@FXML
-	Button b5;
+    @FXML
+    private Button b5;
 
-	@FXML
-	Button b6;
+    @FXML
+    private Button b6;
 
-	@FXML
-	Button b11;
+    @FXML
+    private Button b11;
 
-	@FXML
-	Button b21;
+    @FXML
+    private Button b21;
 
-	@FXML
-	Button b31;
+    @FXML
+    private Button b31;
 
-	@FXML
-	Button b41;
+    @FXML
+    private Button b41;
 
-	@FXML
-	Button b51;
+    @FXML
+    private Button b51;
 
-	@FXML
-	Button b61;
+    @FXML
+    private Button b61;
 
-	@FXML
-	Button b12;
+    @FXML
+    private Button b12;
 
-	@FXML
-	Button b22;
+    @FXML
+    private Button b22;
 
-	@FXML
-	Button b32;
+    @FXML
+    private Button b32;
 
-	@FXML
-	Button b42;
+    @FXML
+    private Button b42;
 
-	@FXML
-	Button b52;
+    @FXML
+    private Button b52;
 
-	@FXML
-	Button b62;
+    @FXML
+    private Button b62;
 
-	@FXML
-	Button b13;
+    @FXML
+    private Button b13;
 
-	@FXML
-	Button b23;
+    @FXML
+    private Button b23;
 
-	@FXML
-	Button b33;
+    @FXML
+    private Button b33;
 
-	@FXML
-	Button b43;
+    @FXML
+    private Button b43;
 
-	@FXML
-	Button b53;
+    @FXML
+    private Button b53;
 
-	@FXML
-	Button b63;
+    @FXML
+    private Button b63;
 
-	@FXML
-	Button b14;
+    @FXML
+    private Button b14;
 
-	@FXML
-	Button b24;
+    @FXML
+    private Button b24;
 
-	@FXML
-	Button b34;
+    @FXML
+    private Button b34;
 
-	@FXML
-	Button b44;
+    @FXML
+    private Button b44;
 
-	@FXML
-	Button b54;
+    @FXML
+    private Button b54;
 
-	@FXML
-	Button b64;
+    @FXML
+    private Button b64;
 
-	@FXML
-	Button b15;
+    @FXML
+    private Button b15;
 
-	@FXML
-	Button b25;
+    @FXML
+    private Button b25;
 
-	@FXML
-	Button b35;
+    @FXML
+    private Button b35;
 
-	@FXML
-	Button b45;
+    @FXML
+    private Button b45;
 
-	@FXML
-	Button b55;
+    @FXML
+    private Button b55;
 
-	@FXML
-	Button b65;
-	@FXML
-	private Pane player1Pane;
+    @FXML
+    private Button b65;
 
-	@FXML
-	private Label player1;
+    @FXML
+    private Label showTime;
 
-	@FXML
-	private Label score1;
+    @FXML
+    private Pane player1Pane;
 
-	@FXML
-	private Pane player2Pane;
+    @FXML
+    private Label player1;
 
-	@FXML
-	private Label player2;
+    @FXML
+    private Label score1;
 
-	@FXML
-	private Label score2;
+    @FXML
+    private Pane player2Pane;
 
-	@FXML
-	private Pane player3Pane;
+    @FXML
+    private Label player2;
 
-	@FXML
-	private Label player3;
+    @FXML
+    private Label score2;
 
-	@FXML
-	private Label score3;
+    @FXML
+    private Pane player3Pane;
 
-	@FXML
-	private Pane player4Pane;
+    @FXML
+    private Label player3;
 
-	@FXML
-	private Label player4;
+    @FXML
+    private Label score3;
 
-	@FXML
-	private Label score4;
+    @FXML
+    private Pane player4Pane;
 
-	@FXML
-	private Pane player5Pane;
+    @FXML
+    private Label player4;
 
-	@FXML
-	private Label player5;
+    @FXML
+    private Label score4;
 
-	@FXML
-	private Label score5;
+    @FXML
+    private Pane player5Pane;
 
-	@FXML
-	private Pane player6Pane;
+    @FXML
+    private Label player5;
 
-	@FXML
-	private Label player6;
+    @FXML
+    private Label score5;
 
-	@FXML
-	private Label score6;
+    @FXML
+    private Pane player6Pane;
 
-	@FXML
-	private Pane player7Pane;
+    @FXML
+    private Label player6;
 
-	@FXML
-	private Label player7;
+    @FXML
+    private Label score6;
 
-	@FXML
-	private Label score7;
+    @FXML
+    private Pane player7Pane;
 
-	@FXML
-	private Pane player8Pane;
+    @FXML
+    private Label player7;
 
-	@FXML
-	private Label player8;
+    @FXML
+    private Label score7;
 
-	@FXML
-	private Label score8;
+    @FXML
+    private Pane player8Pane;
 
-	@FXML
-	private Pane player9Pane;
+    @FXML
+    private Label player8;
 
-	@FXML
-	private Label player9;
+    @FXML
+    private Label score8;
 
-	@FXML
-	private Label score9;
+    @FXML
+    private Pane player9Pane;
 
-	@FXML
-	private Pane player10Pane;
+    @FXML
+    private Label player9;
 
-	@FXML
-	private Label player10;
+    @FXML
+    private Label score9;
 
-	@FXML
-	private Label score10;
+    @FXML
+    private Pane player10Pane;
 
-	@FXML
-	private Label showtime;
+    @FXML
+    private Label player10;
 
-	@FXML
-	private Label bombLeft;
+    @FXML
+    private Label score10;
+
+    @FXML
+    private Label bombLeft;
 
 	int numOfPlayer; // how many player
 
@@ -226,6 +225,7 @@ public class GamePageController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		startTimer();
 		numOfPlayer = 4; // get from how many client that ready
 
 		// put each pane into setOfPlayer
@@ -332,8 +332,8 @@ public class GamePageController implements Initializable {
 	private int player = 0;
 
 	@FXML
-	void play(MouseEvent event) {
-
+	void play(MouseEvent event) throws InterruptedException {
+		startTimer();
 		Button y = (Button) event.getTarget();
 
 		if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
@@ -360,6 +360,58 @@ public class GamePageController implements Initializable {
 		if (player == numOfPlayer) {
 			player = 0;
 		}
-
+		
 	}
+
+	void startTimer() {
+		
+		Task <Void> task = new Task<Void>() {
+	        @Override public Void call() throws InterruptedException {
+
+	          updateMessage("10");
+	          Thread.sleep(1000);
+
+	          updateMessage("9");
+	          Thread.sleep(1000);
+	          
+	          updateMessage("8");
+	          Thread.sleep(1000);
+	          
+	          updateMessage("7");
+	          Thread.sleep(1000);
+	          
+	          updateMessage("6");
+	          Thread.sleep(1000);
+	          
+	          updateMessage("5");
+	          Thread.sleep(1000);
+	          
+	          updateMessage("4");
+	          Thread.sleep(1000);
+	          
+	          updateMessage("3");
+	          Thread.sleep(1000);
+	          
+	          updateMessage("2");
+	          Thread.sleep(1000);
+	          
+	          updateMessage("1");
+	          Thread.sleep(1000);
+	        
+	          return null;
+	        }
+	      };
+	      showTime.textProperty().bind(task.messageProperty());
+
+	      task.setOnSucceeded(e -> {
+	        showTime.textProperty().unbind();
+	        showTime.setText("0");
+	      });
+
+	      Thread thread = new Thread(task);
+	      thread.setDaemon(true);
+	      thread.start();
+	    }
+		     
+	
 }

@@ -8,13 +8,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class StartPageController {
 
 	@FXML
-	private Button start;
+    private Button start;
+
+    @FXML
+    private Label Title;
+
+    @FXML
+    private Label clientNamebox;
 	
 	//this will be assign to each button in the GamePage 0=free 1=bomb
 	public static int[][] valueOfSpace = new int[6][6];

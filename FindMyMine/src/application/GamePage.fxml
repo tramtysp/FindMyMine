@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GamePageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GamePageController">
    <children>
       <Button fx:id="b1" layoutX="44.0" layoutY="97.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
       <Button fx:id="b2" layoutX="109.0" layoutY="97.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
@@ -43,7 +43,7 @@
       <Button fx:id="b45" layoutX="239.0" layoutY="422.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
       <Button fx:id="b55" layoutX="304.0" layoutY="422.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
       <Button fx:id="b65" layoutX="369.0" layoutY="422.0" mnemonicParsing="false" onMouseReleased="#play" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 0.2;" />
-      <Label layoutX="350.0" layoutY="35.0" prefHeight="38.0" prefWidth="43.0" text="Time" />
+      <Label layoutX="350.0" layoutY="35.0" prefHeight="38.0" prefWidth="43.0" text="Timer :" />
       <Label fx:id="showTime" layoutX="415.0" layoutY="45.0" prefWidth="95.0" text="10" />
       <Pane fx:id="player1Pane" layoutX="448.0" layoutY="97.0" prefHeight="38.0" prefWidth="223.0">
          <children>
@@ -105,7 +105,7 @@
             <Label fx:id="score10" layoutX="98.0" layoutY="11.0" text="0" />
          </children>
       </Pane>
-      <Label layoutX="55.0" layoutY="45.0" prefHeight="17.0" prefWidth="131.0" text="Number of Bomb Left :" />
-      <Label fx:id="bombLeft" layoutX="185.0" layoutY="45.0" text="11" />
+      <Label layoutX="55.0" layoutY="45.0" prefHeight="17.0" prefWidth="153.0" text="Number of Bomb Left :" />
+      <Label fx:id="bombLeft" layoutX="208.0" layoutY="46.0" text="11" />
    </children>
 </AnchorPane>
