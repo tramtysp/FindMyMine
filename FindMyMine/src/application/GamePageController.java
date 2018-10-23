@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 public class GamePageController implements Initializable {
 	@FXML
@@ -120,55 +121,148 @@ public class GamePageController implements Initializable {
 	@FXML
 	Button b65;
 	@FXML
-    private Label player1;
+	private Pane player1Pane;
 
-    @FXML
-    private Label score1;
+	@FXML
+	private Label player1;
 
-    @FXML
-    private Label player2;
+	@FXML
+	private Label score1;
 
-    @FXML
-    private Label score2;
+	@FXML
+	private Pane player2Pane;
 
-    @FXML
-    private Label player3;
+	@FXML
+	private Label player2;
 
-    @FXML
-    private Label score3;
+	@FXML
+	private Label score2;
 
-    @FXML
-    private Label player4;
+	@FXML
+	private Pane player3Pane;
 
-    @FXML
-    private Label score4;
+	@FXML
+	private Label player3;
 
+	@FXML
+	private Label score3;
+
+	@FXML
+	private Pane player4Pane;
+
+	@FXML
+	private Label player4;
+
+	@FXML
+	private Label score4;
+
+	@FXML
+	private Pane player5Pane;
+
+	@FXML
+	private Label player5;
+
+	@FXML
+	private Label score5;
+
+	@FXML
+	private Pane player6Pane;
+
+	@FXML
+	private Label player6;
+
+	@FXML
+	private Label score6;
+
+	@FXML
+	private Pane player7Pane;
+
+	@FXML
+	private Label player7;
+
+	@FXML
+	private Label score7;
+
+	@FXML
+	private Pane player8Pane;
+
+	@FXML
+	private Label player8;
+
+	@FXML
+	private Label score8;
+
+	@FXML
+	private Pane player9Pane;
+
+	@FXML
+	private Label player9;
+
+	@FXML
+	private Label score9;
+
+	@FXML
+	private Pane player10Pane;
+
+	@FXML
+	private Label player10;
+
+	@FXML
+	private Label score10;
 
 	@FXML
 	private Label showtime;
 
+	int numOfPlayer; // how many player
+
 	Button[][] setOfButton = new Button[6][6];
-
-	@FXML
-	void play(MouseEvent event) {
-
-		Button y = (Button) event.getTarget();
-
-		if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
-			((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-			((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
-			((Button) event.getTarget()).setDisable(true);
-		}
-
-		if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
-			((Button) event.getTarget()).setStyle("-fx-font-size: 10");
-			((Button) event.getTarget()).setText("bomb");
-			((Button) event.getTarget()).setDisable(true);
-		}
-	}
+	Pane[] setOfPlayer = new Pane[10]; // limit player :10
+	int[] scoreOfPlayer = new int[10];
+	Label[] setOfScore = new Label[10];
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		numOfPlayer = 4; // get from how many client that ready
+
+		// put each pane into setOfPlayer
+		setOfPlayer[0] = player1Pane;
+		setOfPlayer[1] = player2Pane;
+		setOfPlayer[2] = player3Pane;
+		setOfPlayer[3] = player4Pane;
+		setOfPlayer[4] = player5Pane;
+		setOfPlayer[5] = player6Pane;
+		setOfPlayer[6] = player7Pane;
+		setOfPlayer[7] = player8Pane;
+		setOfPlayer[8] = player9Pane;
+		setOfPlayer[9] = player10Pane;
+
+		// to hide who does not play
+		for (int i = numOfPlayer; i < 10; i++) {
+			setOfPlayer[i].setVisible(false);
+		}
+
+		scoreOfPlayer[0] = 0;
+		scoreOfPlayer[1] = 0;
+		scoreOfPlayer[2] = 0;
+		scoreOfPlayer[3] = 0;
+		scoreOfPlayer[4] = 0;
+		scoreOfPlayer[5] = 0;
+		scoreOfPlayer[6] = 0;
+		scoreOfPlayer[7] = 0;
+		scoreOfPlayer[8] = 0;
+		scoreOfPlayer[9] = 0;
+		
+		setOfScore[0] = score1;
+		setOfScore[1] = score2;
+		setOfScore[2] = score3;
+		setOfScore[3] = score4;
+		setOfScore[4] = score5;
+		setOfScore[5] = score6;
+		setOfScore[6] = score7;
+		setOfScore[7] = score8;
+		setOfScore[8] = score9;
+		setOfScore[9] = score10;
+	
 		// TODO Auto-generated method stub
 		setOfButton[0][0] = b1;
 		setOfButton[0][1] = b2;
@@ -228,8 +322,37 @@ public class GamePageController implements Initializable {
 				}
 			}
 		}
-		
-	}
-	
 
+	}
+
+	private int player = 0;
+
+	@FXML
+	void play(MouseEvent event) {
+
+		Button y = (Button) event.getTarget();
+
+		if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
+			((Button) event.getTarget()).setStyle("-fx-font-size: 10");
+			((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
+			((Button) event.getTarget()).setDisable(true);
+
+		}
+
+		if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
+			((Button) event.getTarget()).setStyle("-fx-font-size: 10");
+			((Button) event.getTarget()).setText("bomb");
+			((Button) event.getTarget()).setDisable(true);
+			scoreOfPlayer[player]++;
+			int score = scoreOfPlayer[player];
+			setOfScore[player].setText(score+"");
+			player++;
+			
+		}
+
+		if (player == numOfPlayer) {
+			player = 0;
+		}
+
+	}
 }
