@@ -1,5 +1,6 @@
 package application;
 
+import java.awt.Toolkit;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -7,9 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
-public class GamePageController  implements Initializable {
+public class GamePageController implements Initializable {
 	@FXML
 	Button b1;
 
@@ -117,10 +119,35 @@ public class GamePageController  implements Initializable {
 
 	@FXML
 	Button b65;
+	@FXML
+    private Label player1;
+
+    @FXML
+    private Label score1;
+
+    @FXML
+    private Label player2;
+
+    @FXML
+    private Label score2;
+
+    @FXML
+    private Label player3;
+
+    @FXML
+    private Label score3;
+
+    @FXML
+    private Label player4;
+
+    @FXML
+    private Label score4;
+
+
+	@FXML
+	private Label showtime;
 
 	Button[][] setOfButton = new Button[6][6];
-
-	
 
 	@FXML
 	void play(MouseEvent event) {
@@ -201,5 +228,8 @@ public class GamePageController  implements Initializable {
 				}
 			}
 		}
+		
 	}
+	
+
 }
