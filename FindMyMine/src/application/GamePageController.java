@@ -213,12 +213,16 @@ public class GamePageController implements Initializable {
 	@FXML
 	private Label showtime;
 
+	@FXML
+	private Label bombLeft;
+
 	int numOfPlayer; // how many player
 
 	Button[][] setOfButton = new Button[6][6];
 	Pane[] setOfPlayer = new Pane[10]; // limit player :10
 	int[] scoreOfPlayer = new int[10];
 	Label[] setOfScore = new Label[10];
+	int numBombLeft =11;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -251,7 +255,7 @@ public class GamePageController implements Initializable {
 		scoreOfPlayer[7] = 0;
 		scoreOfPlayer[8] = 0;
 		scoreOfPlayer[9] = 0;
-		
+
 		setOfScore[0] = score1;
 		setOfScore[1] = score2;
 		setOfScore[2] = score3;
@@ -262,7 +266,7 @@ public class GamePageController implements Initializable {
 		setOfScore[7] = score8;
 		setOfScore[8] = score9;
 		setOfScore[9] = score10;
-	
+
 		// TODO Auto-generated method stub
 		setOfButton[0][0] = b1;
 		setOfButton[0][1] = b2;
@@ -343,11 +347,13 @@ public class GamePageController implements Initializable {
 			((Button) event.getTarget()).setStyle("-fx-font-size: 10");
 			((Button) event.getTarget()).setText("bomb");
 			((Button) event.getTarget()).setDisable(true);
+			numBombLeft--;
+			bombLeft.setText(numBombLeft+"");
 			scoreOfPlayer[player]++;
 			int score = scoreOfPlayer[player];
-			setOfScore[player].setText(score+"");
+			setOfScore[player].setText(score + "");
 			player++;
-			
+
 		}
 
 		if (player == numOfPlayer) {
