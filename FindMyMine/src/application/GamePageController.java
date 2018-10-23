@@ -455,6 +455,10 @@ public class GamePageController implements Initializable {
 	      thread.start();
 	    }
 	
+	public Hashtable <Integer, Integer> getHash(){
+		return keeptrack;
+	}
+	
 	@FXML
 	void stop(ActionEvent event) throws IOException {
 		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("Scoreboard.fxml"));
@@ -462,6 +466,7 @@ public class GamePageController implements Initializable {
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(scene);
 		stage.show();
+		
 	}
 		     
 	
