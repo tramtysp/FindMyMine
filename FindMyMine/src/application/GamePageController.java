@@ -340,6 +340,7 @@ public class GamePageController implements Initializable {
 			((Button) event.getTarget()).setStyle("-fx-font-size: 10");
 			((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
 			((Button) event.getTarget()).setDisable(true);
+			player++;
 
 		}
 
