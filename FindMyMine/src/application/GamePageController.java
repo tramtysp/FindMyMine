@@ -1,9 +1,14 @@
 package application;
 
+import static java.util.stream.Collectors.toMap;
+
 import java.io.IOException;
 import java.net.URL;
-import java.util.Enumeration;
+import java.util.Collections;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -231,10 +236,10 @@ public class GamePageController implements Initializable {
 
 	Button[][] setOfButton = new Button[6][6];
 	Pane[] setOfPlayer = new Pane[10]; // limit player :10
-	int[] scoreOfPlayer = new int[10];
 	Label[] setOfScore = new Label[10];
+	int[] scoreOfPlayer = new int[10];
 	int numBombLeft =11;
-
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		startTimer();
@@ -357,7 +362,7 @@ public class GamePageController implements Initializable {
 	}
 
 	//to keep track of score for the score board next page
-	Hashtable<Integer, Integer> keeptrack = new Hashtable<Integer, Integer>();
+	private static Map<Integer, Integer> keeptrack = new Hashtable<Integer, Integer>();
 	
 	private int player = 0;
 
@@ -455,6 +460,11 @@ public class GamePageController implements Initializable {
 	      thread.start();
 	    }
 	
+	
+	
+	Integer[] nameOfPlayer = new Integer[10];
+	private static Map<Integer, Integer> sorted = new Hashtable<Integer,Integer>();
+	
 	@FXML
 	void stop(ActionEvent event) throws IOException {
 		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("Scoreboard.fxml"));
@@ -462,6 +472,18 @@ public class GamePageController implements Initializable {
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(scene);
 		stage.show();
+	}
+
+	public static Map<Integer, Integer> getSorted(){
+		sorted = sort(keeptrack);
+		System.out.print(sorted);
+		return sorted;
+	}
+	
+	private static Map<Integer, Integer> sort(Map<Integer, Integer> map){
+		Map<Integer, Integer> sorted = map .entrySet() .stream() .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())) .collect( toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		return sorted;
+		
 	}
 		     
 	
