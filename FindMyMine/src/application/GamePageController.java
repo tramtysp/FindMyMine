@@ -1,14 +1,23 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.ResourceBundle;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class GamePageController implements Initializable {
 	@FXML
@@ -214,6 +223,9 @@ public class GamePageController implements Initializable {
 
     @FXML
     private Label bombLeft;
+    
+    @FXML
+    private Button stopButton;
 
 	int numOfPlayer; // how many player
 
@@ -326,13 +338,35 @@ public class GamePageController implements Initializable {
 				}
 			}
 		}
+		keeptrack.put(0,0);
+		keeptrack.put(1,0);
+		keeptrack.put(2,0);
+		keeptrack.put(3,0);
+		keeptrack.put(4,0);
+		keeptrack.put(5,0);
+		keeptrack.put(6,0);
+		keeptrack.put(7,0);
+		keeptrack.put(8,0);
+		keeptrack.put(9,0);
+		keeptrack.put(10,0);
+		
+		//color change for the starting player
+		setOfPlayer[player].setStyle("-fx-background-color: grey");
+		
 
 	}
 
+	//to keep track of score for the score board next page
+	Hashtable<Integer, Integer> keeptrack = new Hashtable<Integer, Integer>();
+	
 	private int player = 0;
 
+	//playing
 	@FXML
 	void play(MouseEvent event) throws InterruptedException {
+		//set previous player color back to original
+		setOfPlayer[player].setStyle("-fx-background-color: white");
+		//timer
 		startTimer();
 		Button y = (Button) event.getTarget();
 
@@ -341,6 +375,8 @@ public class GamePageController implements Initializable {
 			((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
 			((Button) event.getTarget()).setDisable(true);
 			player++;
+			//set next player color
+			setOfPlayer[player].setStyle("-fx-background-color: grey");
 
 		}
 
@@ -353,18 +389,23 @@ public class GamePageController implements Initializable {
 			scoreOfPlayer[player]++;
 			int score = scoreOfPlayer[player];
 			setOfScore[player].setText(score + "");
+			keeptrack.put(player, score);
 			player++;
+			//set next player color
+			setOfPlayer[player].setStyle("-fx-background-color: grey");
 
 		}
-
+		
+		
 		if (player == numOfPlayer) {
 			player = 0;
+			setOfPlayer[player].setStyle("-fx-background-color: grey");
 		}
 		
 	}
 
+	//to display count down from 10 to 0
 	void startTimer() {
-		
 		Task <Void> task = new Task<Void>() {
 	        @Override public Void call() throws InterruptedException {
 
@@ -406,12 +447,22 @@ public class GamePageController implements Initializable {
 	      task.setOnSucceeded(e -> {
 	        showTime.textProperty().unbind();
 	        showTime.setText("0");
+	        player++;
 	      });
 
 	      Thread thread = new Thread(task);
 	      thread.setDaemon(true);
 	      thread.start();
 	    }
+	
+	@FXML
+	void stop(ActionEvent event) throws IOException {
+		AnchorPane gamePage = (AnchorPane) FXMLLoader.load(getClass().getResource("Scoreboard.fxml"));
+		Scene scene = new Scene(gamePage);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.show();
+	}
 		     
 	
 }
