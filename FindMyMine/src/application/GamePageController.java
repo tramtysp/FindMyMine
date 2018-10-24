@@ -9,6 +9,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -482,6 +483,11 @@ public class GamePageController implements Initializable {
 	
 	private static Map<Integer, Integer> sort(Map<Integer, Integer> map){
 		Map<Integer, Integer> sorted = map .entrySet() .stream() .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())) .collect( toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) {
+		     if(entry.getValue() < 1){
+		        map.remove(entry.getKey());
+		      }
+		}
 		return sorted;
 		
 	}

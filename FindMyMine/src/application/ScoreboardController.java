@@ -4,11 +4,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+
+import static java.util.stream.Collectors.*; 
+import static java.util.Map.Entry.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +30,7 @@ import javafx.stage.Stage;
 
 public class ScoreboardController implements Initializable{
 
-    @FXML
+	@FXML
     private Label label_scoreboard;
 
     @FXML
@@ -134,6 +140,7 @@ public class ScoreboardController implements Initializable{
 	Pane[] setOfPlayer = new Pane[10];
 	Label[] setOfName = new Label[10];
 	Label[] setOfScore = new Label[10];
+	Map<Integer, Integer> sorted = GamePageController.getSorted();
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -178,48 +185,17 @@ public class ScoreboardController implements Initializable{
 		setOfName[8] = player9;
 		setOfName[9] = player10;
 		
-		Hashtable<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
-		sorted = sort();
-		Enumeration e = sorted.keys();
-		int j = numOfPlayer;
-		while (e.hasMoreElements()) {
-			Integer key = (Integer) e.nextElement();
-			setOfName[j].setText("Player" + key);
-			setOfScore[j].setText("" + sorted.get(key));
-			j--;
-			System.out.println(key + " : " + sorted.get(key));
+		int i = 0;
+		for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) {
+		    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+		    if(i<numOfPlayer) {
+		    		setOfName[i].setText("Player "+ entry.getKey());
+		    		setOfScore[i].setText(entry.getValue() +"");
+		    		i++;
+		    }   
 		}
 	}
-	// problem!! ค่าไม่ยอมมาจากอีก class
-	Hashtable<Integer, Integer> keeptrack = (new GamePageController()).getHash();
-	
-	private Hashtable<Integer, Integer> sort() {
-		List<Integer> mapKeys = new ArrayList<>(keeptrack.keySet());
-	    List<Integer> mapValues = new ArrayList<>(keeptrack.values());
-	    Collections.sort(mapValues);
-	    Collections.sort(mapKeys);
-	    
-		Hashtable<Integer, Integer> sorted = new Hashtable<Integer, Integer>();
 
-		    Iterator<Integer> valueIt = mapValues.iterator();
-		    while (valueIt.hasNext()) {
-		        Integer val = valueIt.next();
-		        Iterator<Integer> keyIt = mapKeys.iterator();
-
-		        while (keyIt.hasNext()) {
-		            Integer key = keyIt.next();
-		            Integer comp1 = keeptrack.get(key);
-		            Integer comp2 = val;
-
-		            if (comp1.equals(comp2)) {
-		                keyIt.remove();
-		                sorted.put(key, val);
-		                break;
-		            }
-		        }
-		    }
-		    return sorted;
-	}
 }
 
 
