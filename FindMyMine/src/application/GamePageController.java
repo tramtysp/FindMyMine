@@ -1,7 +1,6 @@
 package application;
 
 import static java.util.stream.Collectors.toMap;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
@@ -9,7 +8,6 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -24,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import java.util.concurrent.*;
 
 public class GamePageController implements Initializable {
 	@FXML
@@ -366,6 +365,7 @@ public class GamePageController implements Initializable {
 	private static Map<Integer, Integer> keeptrack = new Hashtable<Integer, Integer>();
 	
 	private int player = 0;
+	private int playercoloring = 0;
 
 	//playing
 	@FXML
@@ -490,7 +490,7 @@ public class GamePageController implements Initializable {
 	               iterators.remove();
 	           }
 	       }
-		System.out.print(sorted);
+		//System.out.print(sorted);
 		return sorted;
 		
 	}
