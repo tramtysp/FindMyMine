@@ -366,23 +366,38 @@ public class GamePageController implements Initializable {
 	
 	private int player = 0;
 	private int playercoloring = 0;
+	
+	void colorChange() {
+		if (playercoloring < numOfPlayer -1) {
+			setOfPlayer[playercoloring].setStyle("-fx-background-color: white");
+			setOfPlayer[++playercoloring].setStyle("-fx-background-color: grey");
+		}
+		else if (playercoloring == numOfPlayer - 1) {
+			setOfPlayer[numOfPlayer-1].setStyle("-fx-background-color: white");
+			setOfPlayer[0].setStyle("-fx-background-color: grey");
+			playercoloring = 0;
+		}
+	}
 
 	//playing
 	@FXML
 	void play(MouseEvent event) throws InterruptedException {
-		//set previous player color back to original
-		setOfPlayer[player].setStyle("-fx-background-color: white");
+		//set color of player to know whose turn is next
+		colorChange();
 		//timer
 		startTimer();
 		Button y = (Button) event.getTarget();
-
+		
+		if (player == numOfPlayer) {
+			player = 0;
+			setOfPlayer[player].setStyle("-fx-background-color: grey");
+		}
+		
 		if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
 			((Button) event.getTarget()).setStyle("-fx-font-size: 10");
 			((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
 			((Button) event.getTarget()).setDisable(true);
 			player++;
-			//set next player color
-			setOfPlayer[player].setStyle("-fx-background-color: grey");
 
 		}
 
@@ -397,15 +412,7 @@ public class GamePageController implements Initializable {
 			setOfScore[player].setText(score + "");
 			keeptrack.put(player, score);
 			player++;
-			//set next player color
-			setOfPlayer[player].setStyle("-fx-background-color: grey");
-
-		}
 		
-		
-		if (player == numOfPlayer) {
-			player = 0;
-			setOfPlayer[player].setStyle("-fx-background-color: grey");
 		}
 		
 	}
