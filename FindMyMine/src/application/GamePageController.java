@@ -365,18 +365,21 @@ public class GamePageController implements Initializable {
 	private static Map<Integer, Integer> keeptrack = new Hashtable<Integer, Integer>();
 	
 	private int player = 0;
-	private int playercoloring = 0;
+	private int playerplaying = 1;
+	
 	
 	void colorChange() {
-		if (playercoloring < numOfPlayer -1) {
-			setOfPlayer[playercoloring].setStyle("-fx-background-color: white");
-			setOfPlayer[++playercoloring].setStyle("-fx-background-color: grey");
+		if (playerplaying < numOfPlayer ) {
+			setOfPlayer[--playerplaying].setStyle("-fx-background-color: white");
+			setOfPlayer[++playerplaying].setStyle("-fx-background-color: grey");
+			playerplaying++;
 		}
-		else if (playercoloring == numOfPlayer - 1) {
+		else if (playerplaying == numOfPlayer) {
 			setOfPlayer[numOfPlayer-1].setStyle("-fx-background-color: white");
 			setOfPlayer[0].setStyle("-fx-background-color: grey");
-			playercoloring = 0;
-		}
+			playerplaying = 1;
+		} else {playerplaying = 1;}
+
 	}
 
 	//playing
@@ -387,11 +390,6 @@ public class GamePageController implements Initializable {
 		//timer
 		startTimer();
 		Button y = (Button) event.getTarget();
-		
-		if (player == numOfPlayer) {
-			player = 0;
-			setOfPlayer[player].setStyle("-fx-background-color: grey");
-		}
 		
 		if (y.getStyle() == "-fx-font-size: 0.3") {// free slot
 			((Button) event.getTarget()).setStyle("-fx-font-size: 10");
@@ -413,6 +411,10 @@ public class GamePageController implements Initializable {
 			keeptrack.put(player, score);
 			player++;
 		
+		}
+		
+		if (player == numOfPlayer) {
+			player = 0;
 		}
 		
 	}
