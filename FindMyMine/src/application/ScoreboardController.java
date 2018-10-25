@@ -185,6 +185,7 @@ public class ScoreboardController implements Initializable{
 		setOfName[8] = player9;
 		setOfName[9] = player10;
 		
+		//setText for score board
 		int i = 0;
 		for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) {
 		    //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());

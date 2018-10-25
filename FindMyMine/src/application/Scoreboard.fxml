@@ -15,9 +15,9 @@
             <Font size="38.0" />
          </font>
          <textFill>
-            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+            <RadialGradient centerX="0.5056022408963585" centerY="0.5" radius="0.5">
                <stops>
-                  <Stop color="#d61eeb" />
+                  <Stop color="#eb1e1e" />
                   <Stop color="BLACK" offset="1.0" />
                </stops>
             </RadialGradient>
