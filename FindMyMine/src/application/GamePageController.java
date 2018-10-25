@@ -233,7 +233,7 @@ public class GamePageController implements Initializable {
     @FXML
     private Button stopButton;
 
-	int numOfPlayer; // how many player
+	static int numOfPlayer; // how many player
 
 	Button[][] setOfButton = new Button[6][6];
 	Pane[] setOfPlayer = new Pane[10]; // limit player :10
@@ -477,17 +477,20 @@ public class GamePageController implements Initializable {
 
 	public static Map<Integer, Integer> getSorted(){
 		sorted = sort(keeptrack);
-		System.out.print(sorted);
+		//System.out.print(sorted);
 		return sorted;
 	}
 	
 	private static Map<Integer, Integer> sort(Map<Integer, Integer> map){
 		Map<Integer, Integer> sorted = map .entrySet() .stream() .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())) .collect( toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
-		for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) {
-		     if(entry.getValue() < 1){
-		        map.remove(entry.getKey());
-		      }
-		}
+		Iterator<Integer> iterators = sorted.keySet().iterator();
+	       while(iterators.hasNext()) {
+	           int key = iterators.next();
+	           if(key >= numOfPlayer) {
+	               iterators.remove();
+	           }
+	       }
+		System.out.print(sorted);
 		return sorted;
 		
 	}

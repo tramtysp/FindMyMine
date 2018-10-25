@@ -187,7 +187,7 @@ public class ScoreboardController implements Initializable{
 		
 		int i = 0;
 		for (Map.Entry<Integer, Integer> entry : sorted.entrySet()) {
-		    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+		    //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
 		    if(i<numOfPlayer) {
 		    		int v = entry.getKey();
 		    		v++;
