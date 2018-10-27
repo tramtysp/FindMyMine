@@ -356,7 +356,7 @@ public class GamePageController implements Initializable {
 		keeptrack.put(10,0);
 		
 		//color change for the starting player
-		setOfPlayer[player].setStyle("-fx-background-color: grey");
+		setOfPlayer[0].setStyle("-fx-background-color: grey");
 		
 
 	}
@@ -396,7 +396,6 @@ public class GamePageController implements Initializable {
 			((Button) event.getTarget()).setStyle("-fx-background-color:#cccccc");
 			((Button) event.getTarget()).setDisable(true);
 			player++;
-
 		}
 
 		if (y.getStyle() == "-fx-font-size: 0.1") {// bomb
@@ -410,12 +409,11 @@ public class GamePageController implements Initializable {
 			setOfScore[player].setText(score + "");
 			keeptrack.put(player, score);
 			player++;
-		
 		}
-		
 		if (player == numOfPlayer) {
 			player = 0;
 		}
+		
 		
 	}
 
@@ -462,9 +460,17 @@ public class GamePageController implements Initializable {
 	      task.setOnSucceeded(e -> {
 	        showTime.textProperty().unbind();
 	        showTime.setText("0");
+	        
+	        //skip this player when timeout
 	        player++;
+	        //playerplaying++;
+	        if (player == numOfPlayer) {
+				player = 0;
+			} 
+	        colorChange();
+	        
 	      });
-
+	   
 	      Thread thread = new Thread(task);
 	      thread.setDaemon(true);
 	      thread.start();
