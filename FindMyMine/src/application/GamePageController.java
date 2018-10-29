@@ -385,6 +385,8 @@ public class GamePageController implements Initializable {
 	//playing
 	@FXML
 	void play(MouseEvent event) throws InterruptedException {
+		//set exit startTimer();
+		condition = true;
 		//set color of player to know whose turn is next
 		colorChange();
 		//timer
@@ -417,58 +419,41 @@ public class GamePageController implements Initializable {
 		
 	}
 
+	boolean condition = false;
 	//to display count down from 10 to 0
 	void startTimer() {
 		Task <Void> task = new Task<Void>() {
 	        @Override public Void call() throws InterruptedException {
-
-	          updateMessage("10");
-	          Thread.sleep(1000);
-
-	          updateMessage("9");
-	          Thread.sleep(1000);
-	          
-	          updateMessage("8");
-	          Thread.sleep(1000);
-	          
-	          updateMessage("7");
-	          Thread.sleep(1000);
-	          
-	          updateMessage("6");
-	          Thread.sleep(1000);
-	          
-	          updateMessage("5");
-	          Thread.sleep(1000);
-	          
-	          updateMessage("4");
-	          Thread.sleep(1000);
-	          
-	          updateMessage("3");
-	          Thread.sleep(1000);
-	          
-	          updateMessage("2");
-	          Thread.sleep(1000);
-	          
-	          updateMessage("1");
-	          Thread.sleep(1000);
-	        
+	        		for (int i = 10; i>=0; i--) {
+	        			//exit startTimer();
+	        			if (condition == true) {
+	        				return null;
+	                }
+	        			updateMessage(i+"");
+	        			Thread.sleep(1000);
+	        		}
 	          return null;
 	        }
 	      };
+	    //exit startTimer();
+	      if(condition == true) {
+	    	  	condition = false;
+	    	  	return;
+	      }
 	      showTime.textProperty().bind(task.messageProperty());
-
 	      task.setOnSucceeded(e -> {
-	        showTime.textProperty().unbind();
+	    	  	showTime.textProperty().unbind();
 	        showTime.setText("0");
-	        
 	        //skip this player when timeout
 	        player++;
-	        //playerplaying++;
 	        if (player == numOfPlayer) {
 				player = 0;
 			} 
 	        colorChange();
-	        
+	      	//set condition back to default
+	        condition = false;
+	        //startTimer after timeout
+	        startTimer();
 	      });
 	   
 	      Thread thread = new Thread(task);
